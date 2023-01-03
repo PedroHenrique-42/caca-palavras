@@ -1,19 +1,19 @@
 package br.com.magna.garagem.cacapalavras;
 
 public class Usuario {
-	private static String nome;
-	private int pontuacao;
-	private int tentativas;
-
+	private String nome;
+	private Integer pontuacao = 0;
+	private Integer tentativas = 0;
+	
+	Usuario(String nome) {
+		this.nome = nome;
+	}
+	
 	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome) {
-		Usuario.nome = nome;
-	}
-
-	private void pontuar() {
+	public void pontuar() {
 		this.pontuacao += 1;
 	}
 
@@ -21,7 +21,7 @@ public class Usuario {
 		return pontuacao;
 	}
 
-	private void realizarTentativa() {
+	public void realizarTentativa() {
 		this.tentativas += 1;
 	}
 
