@@ -6,6 +6,6 @@ public class Placar {
 	}
 
 	public static void mostrarQuantidadeDeTentativas(int quantidadeTentativas) {
-		System.out.println(" Tentativas realizadas: " + quantidadeTentativas);
+		System.out.println(" Tentativas realizadas: " + quantidadeTentativas + "\n");
 	}
 }

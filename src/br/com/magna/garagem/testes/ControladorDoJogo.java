@@ -20,6 +20,5 @@ public class ControladorDoJogo {
 		else {
 			System.out.println("\nPalavra errada ou não encontrada :(\nPor favor, tente novamente.\n");
 		}
-
 	}
 }

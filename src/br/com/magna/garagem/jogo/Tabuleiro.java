@@ -34,7 +34,7 @@ public class Tabuleiro {
 
 				System.out.print(this.tabuleiro[linha][coluna]);
 				System.out.print(" | ");
-				this.getCoordenadasDasLetras().put(linha + "," + coluna, this.tabuleiro[linha][coluna]);
+				this.pegarCoordenadasDasLetras().put(linha + "," + coluna, this.tabuleiro[linha][coluna]);
 			}
 
 			System.out.println();
@@ -42,7 +42,7 @@ public class Tabuleiro {
 		System.out.println(linhaDoTabuleiro);
 	}
 
-	public Map<String, String> getCoordenadasDasLetras() {
+	public Map<String, String> pegarCoordenadasDasLetras() {
 		return this.coordenadasDasLetras;
 	}
 }

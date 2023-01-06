@@ -9,7 +9,7 @@ public class Usuario {
 		this.nome = nome;
 	}
 	
-	public String getNome() {
+	public String pegarNome() {
 		return nome;
 	}
 
@@ -17,7 +17,7 @@ public class Usuario {
 		this.pontuacao += 1;
 	}
 
-	public int getPontuacao() {
+	public int pegarPontuacao() {
 		return pontuacao;
 	}
 
@@ -25,7 +25,7 @@ public class Usuario {
 		this.tentativas += 1;
 	}
 
-	public int getTentativas() {
+	public int pegarTentativas() {
 		return tentativas;
 	}
 }

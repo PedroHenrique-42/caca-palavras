@@ -30,8 +30,7 @@ public class TesteMap {
 		mapa.put("1,9", "I");
 
 		while (true) {
-			Validador validadorDeEntrada = new Validador();
-			String[] posicoes = validadorDeEntrada.validar();
+			String[] posicoes = new Validador().validar();
 			ControladorDoJogo controlador = new ControladorDoJogo();
 			controlador.iniciarJogo(mapa, posicoes);
 
