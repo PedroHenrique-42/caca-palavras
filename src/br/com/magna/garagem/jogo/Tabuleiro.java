@@ -27,7 +27,18 @@ public class Tabuleiro {
 					this.tabuleiro[linha][coluna] = "U";
 				} else if (linha == 4 && coluna == 5) {
 					this.tabuleiro[linha][coluna] = "A";
-				} else {
+				} else if (linha == 1 && coluna == 1) {
+					this.tabuleiro[linha][coluna] = "B";
+				} else if (linha == 2 && coluna == 1) {
+					this.tabuleiro[linha][coluna] = "O";
+				} else if (linha == 3 && coluna == 1) {
+					this.tabuleiro[linha][coluna] = "L";
+				} else if (linha == 4 && coluna == 1) {
+					this.tabuleiro[linha][coluna] = "A";
+				} 
+				
+				
+				else {
 					char letraAleatoria = (char) letrasAleatorias.nextInt(65, 90);
 					this.tabuleiro[linha][coluna] = String.valueOf(letraAleatoria);
 				}

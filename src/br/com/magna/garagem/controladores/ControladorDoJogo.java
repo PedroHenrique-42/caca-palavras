@@ -22,7 +22,7 @@ public class ControladorDoJogo {
 	// tabuleiro
 	public void verificarJogada(Map<String, String> tabuleiro, List<String> posicoesDigitadas, Usuario usuario) {
 		usuario.realizarTentativa();
-		
+
 		if (tabuleiro.containsKey(posicoesDigitadas.get(0)) && tabuleiro.containsKey(posicoesDigitadas.get(1))
 				&& (tabuleiro.get(posicoesDigitadas.get(0)) == tabuleiro.get("4,3")
 						&& tabuleiro.get(posicoesDigitadas.get(1)) == tabuleiro.get("4,5"))) {
@@ -31,11 +31,25 @@ public class ControladorDoJogo {
 			tabuleiro.remove(posicoesDigitadas.get(0));
 			tabuleiro.remove(posicoesDigitadas.get(1));
 			usuario.pontuar();
-			
+
 			Placar.mostrarPontuacao(usuario.pegarPontuacao());
 			Placar.mostrarQuantidadeDeTentativas(usuario.pegarTentativas());
 
-		} else {
+		} else if (tabuleiro.containsKey(posicoesDigitadas.get(0)) && tabuleiro.containsKey(posicoesDigitadas.get(1))
+				&& (tabuleiro.get(posicoesDigitadas.get(0)) == tabuleiro.get("1,1")
+						&& tabuleiro.get(posicoesDigitadas.get(1)) == tabuleiro.get("4,1"))) {
+
+			System.out.println(" Palavra \"BOLA\" encontrada com sucesso, parabéns!\n");
+			tabuleiro.remove(posicoesDigitadas.get(0));
+			tabuleiro.remove(posicoesDigitadas.get(1));
+			usuario.pontuar();
+
+			Placar.mostrarPontuacao(usuario.pegarPontuacao());
+			Placar.mostrarQuantidadeDeTentativas(usuario.pegarTentativas());
+
+		}
+
+		else {
 			System.out.println("\n Palavra não encontrada :(\n Por favor, tente novamente.\n");
 		}
 
@@ -52,7 +66,7 @@ public class ControladorDoJogo {
 			System.out.print(" Continuar jogo? Digite \"sim\" ou \"não\": ");
 			String verificarContinuacao = leitorDeDados.nextLine();
 
-			if (verificarContinuacao.equals("sim") || verificarContinuacao.equals("Sim")) {
+			if (verificarContinuacao.contains("sim") || verificarContinuacao.contains("Sim")) {
 				continue;
 			} else {
 				System.out.println(" Obrigado por jogar meu jogo, tenha um ótimo dia!");
