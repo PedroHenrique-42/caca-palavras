@@ -20,7 +20,7 @@ public class ControladorDoJogo {
 
 	// Verifica se as posições digitadas pelo coincidem com alguma palavra no
 	// tabuleiro
-	public void verificarJogada(Map<String, String> tabuleiro, List<String> posicoesDigitadas, Usuario usuario) {
+	public void realizarJogada(Map<String, String> tabuleiro, List<String> posicoesDigitadas, Usuario usuario) {
 		usuario.realizarTentativa();
 		
 		if (tabuleiro.containsKey(posicoesDigitadas.get(0)) && tabuleiro.containsKey(posicoesDigitadas.get(1))
@@ -47,7 +47,7 @@ public class ControladorDoJogo {
 		while (true) {
 			List<String> posicoesDigitadas = new ControladorDeEntradaDeDados().validarEntrada();
 
-			verificarJogada(tabuleiro, posicoesDigitadas, usuario);
+			realizarJogada(tabuleiro, posicoesDigitadas, usuario);
 
 			System.out.print(" Continuar jogo? Digite \"sim\" ou \"não\": ");
 			String verificarContinuacao = leitorDeDados.nextLine();

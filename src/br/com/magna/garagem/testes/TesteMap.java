@@ -9,7 +9,7 @@ public class TesteMap {
 	public static void main(String[] args) {
 		Map<String, String> mapa = new HashMap<>();
 		mapa.put("0,1", "A");
-		mapa.put("0,2", "B");
+		mapa.put("0,2", "P");
 		mapa.put("0,3", "C");
 		mapa.put("0,4", "R");
 		mapa.put("0,5", "U");
@@ -17,10 +17,9 @@ public class TesteMap {
 		mapa.put("0,7", "G");
 		mapa.put("0,8", "H");
 		mapa.put("0,9", "I");
-		
-		
+
 		mapa.put("1,1", "A");
-		mapa.put("1,2", "V");
+		mapa.put("1,2", "A");
 		mapa.put("1,3", "I");
 		mapa.put("1,4", "A");
 		mapa.put("1,5", "O");
@@ -28,7 +27,7 @@ public class TesteMap {
 		mapa.put("1,7", "G");
 		mapa.put("1,8", "H");
 		mapa.put("1,9", "I");
-
+		
 		while (true) {
 			String[] posicoes = new Validador().validar();
 			ControladorDoJogo controlador = new ControladorDoJogo();
