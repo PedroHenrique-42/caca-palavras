@@ -1,4 +1,4 @@
-package br.com.magna.garagem.jogo;
+package br.com.magna.garagem.cacapalavras.jogo;
 
 public class Placar {
 	public static void mostrarPontuacao(int pontuacao) {
