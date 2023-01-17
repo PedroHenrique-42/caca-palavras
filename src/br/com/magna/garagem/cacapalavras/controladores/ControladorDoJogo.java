@@ -10,7 +10,7 @@ import br.com.magna.garagem.cacapalavras.componentes.Tabuleiro;
 import br.com.magna.garagem.cacapalavras.modelos.Usuario;
 
 public class ControladorDoJogo {
-	private final Scanner leitorDeDados = new Scanner(System.in);
+	private static final Scanner leitorDeDados = new Scanner(System.in);
 	private Usuario usuario;
 	private Map<String, String> coordenadasDasLetras;
 	private Tabuleiro tabuleiro;
@@ -27,17 +27,17 @@ public class ControladorDoJogo {
 
 		while (continuarVerificandoPosicoes) {
 			System.out.print(" Digite aqui as posições da palavra encontrada: ");
-			String entradaDeDados = leitorDeDados.nextLine();
+			String entradaDeDados = ControladorDoJogo.leitorDeDados.nextLine();
 
 			if (entradaDeDados.matches("[0-5],[0-5]-[0-5],[0-5]")) {
 				posicoesDigitadas = Arrays.asList(entradaDeDados.split("-"));
 				continuarVerificandoPosicoes = false;
+			} else {
+				System.out.println("\n Por favor, digite posições válidas! Utilize a formatação\n"
+						+ " especificada no início do jogo: \"1,1-2,2\".");
+				System.out.println(" Lembre-se: o primeiro número de cada posição, é a linha,\n"
+						+ " já o segundo número de cada posição, é a coluna.\n");
 			}
-
-			System.out.println("\n Por favor, digite posições válidas! Utilize a formatação\n"
-					+ " especificada acima: \"1,1-2,2\".");
-			System.out.println(" Lembre-se: o primeiro número de cada posição, é a linha,\n"
-					+ " já o segundo número de cada posição, é a coluna.\n");
 		}
 
 		return posicoesDigitadas;
@@ -51,7 +51,7 @@ public class ControladorDoJogo {
 				&& (coordenadasDasLetras.get(posicoesDigitadas.get(0)) == coordenadasDasLetras.get("4,3")
 						&& coordenadasDasLetras.get(posicoesDigitadas.get(1)) == coordenadasDasLetras.get("4,5"))) {
 
-			System.out.println(" Palavra \"RUA\" encontrada com sucesso, parabéns!\n");
+			System.out.println(" Palavra \"RUA\" encontrada!\n");
 			coordenadasDasLetras.remove(posicoesDigitadas.get(0));
 			coordenadasDasLetras.remove(posicoesDigitadas.get(1));
 			usuario.pontuar();
@@ -60,53 +60,50 @@ public class ControladorDoJogo {
 				&& (coordenadasDasLetras.get(posicoesDigitadas.get(0)) == coordenadasDasLetras.get("1,1")
 						&& coordenadasDasLetras.get(posicoesDigitadas.get(1)) == coordenadasDasLetras.get("4,1"))) {
 
-			System.out.println(" Palavra \"BOLA\" encontrada com sucesso, parabéns!\n");
+			System.out.println(" Palavra \"BOLA\" encontrada!\n");
 			coordenadasDasLetras.remove(posicoesDigitadas.get(0));
 			coordenadasDasLetras.remove(posicoesDigitadas.get(1));
 			this.usuario.pontuar();
+		} else {
+			System.out.println("\n Palavra não encontrada :(\n Por favor, tente novamente.\n");
 		}
-
-		System.out.println("\n Palavra não encontrada :(\n Por favor, tente novamente.\n");
 	}
 
 	public void iniciarFluxoDoJogo() {
 		boolean continuarJogo = true;
 
 		while (continuarJogo) {
+			System.out.println(" As palavras são: BOLA e RUA\n");
 			tabuleiro.mostrarTabuleiro();
 			System.out.println();
 
-			List<String> posicoesDigitadas = validarEntrada();
-
-			verificarJogada(posicoesDigitadas);
+			verificarJogada(validarEntrada());
 
 			if (this.usuario.pegarPontuacao() == 2) {
 				System.out.println(" Parabéns! Você achou todas as palavras!");
-				this.usuario.mostrarPontuacao();
-				this.usuario.mostrarQuantidadeDeTentativas();
-
-				System.out.println(
-						" Obrigado por jogar meu jogo, " + this.usuario.mostrarNome() + ". Tenha um ótimo dia!");
-				this.leitorDeDados.close();
+				encerrarJogo();
 				continuarJogo = false;
-			}
-
-			System.out.print(" Continuar jogo? Digite \"sim\" ou \"não\": ");
-			String verificarContinuacao = this.leitorDeDados.nextLine();
-			System.out.println();
-
-			if (verificarContinuacao.contains("sim") || verificarContinuacao.contains("Sim")) {
-				continue;
 			} else {
-				System.out.println(
-						" Obrigado por jogar meu jogo, " + this.usuario.mostrarNome() + ". Tenha um ótimo dia!");
-				this.usuario.mostrarPontuacao();
-				this.usuario.mostrarQuantidadeDeTentativas();
-				this.leitorDeDados.close();
+				System.out.print(" Continuar jogo? Digite \"sim\" ou \"não\": ");
+				String perguntarSeDesejaContinuar = ControladorDoJogo.leitorDeDados.nextLine();
+				System.out.println();
+
+				if (perguntarSeDesejaContinuar.contains("sim") || perguntarSeDesejaContinuar.contains("Sim")) {
+					System.out.println(" ----------------------------------------------------------------");
+					continue;
+				}
+
+				encerrarJogo();
 				continuarJogo = false;
 			}
 		}
 
 	}
 
+	public void encerrarJogo() {
+		System.out.println(" Obrigado por jogar meu jogo, " + this.usuario.mostrarNome() + ". Tenha um ótimo dia!");
+		this.usuario.mostrarPontuacao();
+		this.usuario.mostrarQuantidadeDeTentativas();
+		ControladorDoJogo.leitorDeDados.close();
+	}
 }

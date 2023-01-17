@@ -44,8 +44,6 @@ public class Tabuleiro {
 
 	public void mostrarTabuleiro() {
 		String linhaDoTabuleiro = "    -----------------------";
-
-		System.out.println(" As palavras são: BOLA e RUA\n");
 		
 		System.out.println("     0   1   2   3   4   5");
 		for (Integer linha = 0; linha < this.tabuleiro.length; linha++) {
