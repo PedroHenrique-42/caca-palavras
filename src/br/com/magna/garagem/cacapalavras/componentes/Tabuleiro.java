@@ -1,4 +1,4 @@
-package br.com.magna.garagem.cacapalavras.jogo;
+package br.com.magna.garagem.cacapalavras.componentes;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,8 +7,12 @@ import java.util.Random;
 public class Tabuleiro {
 	private String[][] tabuleiro = new String[6][6];
 	private Map<String, String> coordenadasDasLetras = new HashMap<>();
+	
+	public Tabuleiro () {
+		this.criarTabuleiro();
+	}
 
-	public void criarTabuleiro() {
+	private void criarTabuleiro() {
 		Random letrasAleatorias = new Random();
 
 		for (Integer linha = 0; linha < this.tabuleiro.length; linha++) {

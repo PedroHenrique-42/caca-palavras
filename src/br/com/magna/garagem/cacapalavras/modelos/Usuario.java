@@ -1,4 +1,4 @@
-package br.com.magna.garagem.cacapalavras;
+package br.com.magna.garagem.cacapalavras.modelos;
 
 import java.util.Scanner;
 
@@ -27,12 +27,17 @@ public class Usuario {
 	public int pegarPontuacao() {
 		return pontuacao;
 	}
+	
+	public void mostrarPontuacao() {
+		System.out.println(" Sua pontuação: " + this.pontuacao);
+	}
 
 	public void realizarTentativa() {
 		this.tentativas += 1;
 	}
 
-	public int pegarTentativas() {
-		return tentativas;
+	
+	public void mostrarQuantidadeDeTentativas() {
+		System.out.println(" Tentativas realizadas: " + this.tentativas + "\n");
 	}
 }

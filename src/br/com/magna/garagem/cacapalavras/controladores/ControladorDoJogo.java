@@ -6,43 +6,41 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import br.com.magna.garagem.cacapalavras.Usuario;
-import br.com.magna.garagem.cacapalavras.jogo.Placar;
-import br.com.magna.garagem.cacapalavras.jogo.Tabuleiro;
+import br.com.magna.garagem.cacapalavras.componentes.Tabuleiro;
+import br.com.magna.garagem.cacapalavras.modelos.Usuario;
 
 public class ControladorDoJogo {
 	private final Scanner leitorDeDados = new Scanner(System.in);
+	private Usuario usuario;
 	private Map<String, String> coordenadasDasLetras;
 	private Tabuleiro tabuleiro;
-	private Usuario usuario;
 
-	public ControladorDoJogo(Map<String, String> coordenadasDasLetras, Tabuleiro tabuleiro, Usuario usuario) {
+	public ControladorDoJogo(Usuario usuario, Tabuleiro tabuleiro, Map<String, String> coordenadasDasLetras) {
 		this.coordenadasDasLetras = coordenadasDasLetras;
 		this.usuario = usuario;
 		this.tabuleiro = tabuleiro;
 	}
 
 	private List<String> validarEntrada() {
-
 		List<String> posicoesDigitadas = new ArrayList<>(2);
+		Boolean continuarVerificandoPosicoes = true;
 
-		while (true) {
+		while (continuarVerificandoPosicoes) {
 			System.out.print(" Digite aqui as posições da palavra encontrada: ");
 			String entradaDeDados = leitorDeDados.nextLine();
 
 			if (entradaDeDados.matches("[0-5],[0-5]-[0-5],[0-5]")) {
 				posicoesDigitadas = Arrays.asList(entradaDeDados.split("-"));
-				break;
-			} else {
-				System.out.println("\n Por favor, digite posições válidas! Utilize a formatação\n"
-						+ " especificada acima: \"1,1-2,2\".");
-				System.out.println(" Lembre-se: o primeiro número de cada posição, é a linha,\n"
-						+ " já o segundo número de cada posição, é a coluna.\n");
+				continuarVerificandoPosicoes = false;
 			}
+
+			System.out.println("\n Por favor, digite posições válidas! Utilize a formatação\n"
+					+ " especificada acima: \"1,1-2,2\".");
+			System.out.println(" Lembre-se: o primeiro número de cada posição, é a linha,\n"
+					+ " já o segundo número de cada posição, é a coluna.\n");
 		}
 
 		return posicoesDigitadas;
-
 	}
 
 	private void verificarJogada(List<String> posicoesDigitadas) {
@@ -68,14 +66,13 @@ public class ControladorDoJogo {
 			this.usuario.pontuar();
 		}
 
-		else {
-			System.out.println("\n Palavra não encontrada :(\n Por favor, tente novamente.\n");
-		}
-
+		System.out.println("\n Palavra não encontrada :(\n Por favor, tente novamente.\n");
 	}
 
-	public void iniciarJogo() {
-		while (true) {
+	public void iniciarFluxoDoJogo() {
+		boolean continuarJogo = true;
+
+		while (continuarJogo) {
 			tabuleiro.mostrarTabuleiro();
 			System.out.println();
 
@@ -85,13 +82,13 @@ public class ControladorDoJogo {
 
 			if (this.usuario.pegarPontuacao() == 2) {
 				System.out.println(" Parabéns! Você achou todas as palavras!");
-				Placar.mostrarPontuacao(this.usuario.pegarPontuacao());
-				Placar.mostrarQuantidadeDeTentativas(this.usuario.pegarTentativas());
+				this.usuario.mostrarPontuacao();
+				this.usuario.mostrarQuantidadeDeTentativas();
 
 				System.out.println(
 						" Obrigado por jogar meu jogo, " + this.usuario.mostrarNome() + ". Tenha um ótimo dia!");
 				this.leitorDeDados.close();
-				break;
+				continuarJogo = false;
 			}
 
 			System.out.print(" Continuar jogo? Digite \"sim\" ou \"não\": ");
@@ -103,10 +100,10 @@ public class ControladorDoJogo {
 			} else {
 				System.out.println(
 						" Obrigado por jogar meu jogo, " + this.usuario.mostrarNome() + ". Tenha um ótimo dia!");
-				Placar.mostrarPontuacao(this.usuario.pegarPontuacao());
-				Placar.mostrarQuantidadeDeTentativas(this.usuario.pegarTentativas());
+				this.usuario.mostrarPontuacao();
+				this.usuario.mostrarQuantidadeDeTentativas();
 				this.leitorDeDados.close();
-				break;
+				continuarJogo = false;
 			}
 		}
 
