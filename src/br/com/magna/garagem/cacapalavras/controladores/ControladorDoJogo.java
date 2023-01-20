@@ -69,7 +69,7 @@ public class ControladorDoJogo {
 			verificarJogada(validarEntrada());
 
 			if (this.usuario.pegarPontuacao() == 3) {
-				System.out.println(" Parabéns! Você achou todas as palavras!");
+				System.out.println(" Você encontrou todas as palavras!");
 				encerrarJogo();
 				continuarJogo = false;
 			} else {

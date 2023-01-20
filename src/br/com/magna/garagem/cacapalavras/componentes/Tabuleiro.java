@@ -17,6 +17,7 @@ public class Tabuleiro {
 	public void criarTabuleiro() {
 		Random letrasAleatorias = new Random();
 		String linhaDoTabuleiro = "    -----------------------";
+		String caracterLetraEncontrada = "#";
 
 		System.out.println(" As palavras são: BOLA, CARRO e RUA\n");
 
@@ -31,33 +32,33 @@ public class Tabuleiro {
 				}
 
 				if (linha == 4 && coluna == 3) {
-					this.tabuleiro[linha][coluna] = palavras.containsKey("4,3-4,5") ? "R" : "*";
+					this.tabuleiro[linha][coluna] = palavras.containsKey("4,3-4,5") ? "R" : caracterLetraEncontrada;
 				} else if (linha == 4 && coluna == 4) {
-					this.tabuleiro[linha][coluna] = palavras.containsKey("4,3-4,5") ? "U" : "*";
+					this.tabuleiro[linha][coluna] = palavras.containsKey("4,3-4,5") ? "U" : caracterLetraEncontrada;
 				} else if (linha == 4 && coluna == 5) {
-					this.tabuleiro[linha][coluna] = palavras.containsKey("4,3-4,5") ? "A" : "*";
+					this.tabuleiro[linha][coluna] = palavras.containsKey("4,3-4,5") ? "A" : caracterLetraEncontrada;
 				}
 
 				else if (linha == 0 && coluna == 1) {
-					this.tabuleiro[linha][coluna] = palavras.containsKey("0,1-0,4") ? "B" : "*";
+					this.tabuleiro[linha][coluna] = palavras.containsKey("0,1-0,4") ? "B" : caracterLetraEncontrada;
 				} else if (linha == 0 && coluna == 2) {
-					this.tabuleiro[linha][coluna] = palavras.containsKey("0,1-0,4") ? "O" : "*";
+					this.tabuleiro[linha][coluna] = palavras.containsKey("0,1-0,4") ? "O" : caracterLetraEncontrada;
 				} else if (linha == 0 && coluna == 3) {
-					this.tabuleiro[linha][coluna] = palavras.containsKey("0,1-0,4") ? "L" : "*";
+					this.tabuleiro[linha][coluna] = palavras.containsKey("0,1-0,4") ? "L" : caracterLetraEncontrada;
 				} else if (linha == 0 && coluna == 4) {
-					this.tabuleiro[linha][coluna] = palavras.containsKey("0,1-0,4") ? "A" : "*";
+					this.tabuleiro[linha][coluna] = palavras.containsKey("0,1-0,4") ? "A" : caracterLetraEncontrada;
 				}
 
 				else if (linha == 1 && coluna == 0) {
-					this.tabuleiro[linha][coluna] = palavras.containsKey("1,0-5,0") ? "C" : "*";
+					this.tabuleiro[linha][coluna] = palavras.containsKey("1,0-5,0") ? "C" : caracterLetraEncontrada;
 				} else if (linha == 2 && coluna == 0) {
-					this.tabuleiro[linha][coluna] = palavras.containsKey("1,0-5,0") ? "A" : "*";
+					this.tabuleiro[linha][coluna] = palavras.containsKey("1,0-5,0") ? "A" : caracterLetraEncontrada;
 				} else if (linha == 3 && coluna == 0) {
-					this.tabuleiro[linha][coluna] = palavras.containsKey("1,0-5,0") ? "R" : "*";
+					this.tabuleiro[linha][coluna] = palavras.containsKey("1,0-5,0") ? "R" : caracterLetraEncontrada;
 				} else if (linha == 4 && coluna == 0) {
-					this.tabuleiro[linha][coluna] = palavras.containsKey("1,0-5,0") ? "R" : "*";
+					this.tabuleiro[linha][coluna] = palavras.containsKey("1,0-5,0") ? "R" : caracterLetraEncontrada;
 				} else if (linha == 5 && coluna == 0) {
-					this.tabuleiro[linha][coluna] = palavras.containsKey("1,0-5,0") ? "O" : "*";
+					this.tabuleiro[linha][coluna] = palavras.containsKey("1,0-5,0") ? "O" : caracterLetraEncontrada;
 				}
 
 				else {

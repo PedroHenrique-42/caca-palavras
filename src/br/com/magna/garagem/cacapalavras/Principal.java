@@ -20,6 +20,7 @@ public class Principal {
 
 		instrucoes.apresentarJogo();
 		instrucoes.mostrarInstrucoesDoJogo();
+		
 		controladorDoJogo.iniciarJogo();
 	}
 }
