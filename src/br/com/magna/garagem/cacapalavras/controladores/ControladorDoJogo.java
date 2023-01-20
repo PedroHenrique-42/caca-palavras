@@ -12,7 +12,9 @@ import br.com.magna.garagem.cacapalavras.modelos.Usuario;
 public class ControladorDoJogo {
 	private static final Scanner leitorDeDados = new Scanner(System.in);
 	private Usuario usuario;
+	
 	private Map<String, String> coordenadasDasLetras;
+	
 	private Tabuleiro tabuleiro;
 
 	public ControladorDoJogo(Usuario usuario, Tabuleiro tabuleiro, Map<String, String> coordenadasDasLetras) {
@@ -45,7 +47,7 @@ public class ControladorDoJogo {
 
 	private void verificarJogada(List<String> posicoesDigitadas) {
 		this.usuario.realizarTentativa();
-
+		
 		if (coordenadasDasLetras.containsKey(posicoesDigitadas.get(0))
 				&& coordenadasDasLetras.containsKey(posicoesDigitadas.get(1))
 				&& (coordenadasDasLetras.get(posicoesDigitadas.get(0)) == coordenadasDasLetras.get("4,3")
