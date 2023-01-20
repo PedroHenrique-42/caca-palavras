@@ -13,7 +13,7 @@ public class Principal {
 		usuario.definirNome();
 
 		Tabuleiro tabuleiro = new Tabuleiro();
-		Map<String, String> coordenadasDasLetras = tabuleiro.pegarCoordenadasDasLetras();
+		Map<String, String> coordenadasDasLetras = tabuleiro.pegarPalavras();
 
 		ControladorDoJogo controladorDoJogo = new ControladorDoJogo(usuario, tabuleiro, coordenadasDasLetras);
 		Instrucoes instrucoes = new Instrucoes(usuario);

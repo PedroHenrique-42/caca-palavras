@@ -76,7 +76,7 @@ public class Tabuleiro {
 		System.out.println(linhaDoTabuleiro);
 	}
 
-	public Map<String, String> pegarCoordenadasDasLetras() {
+	public Map<String, String> pegarPalavras() {
 		return this.palavras;
 	}
 }
