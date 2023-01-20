@@ -1,36 +1,37 @@
 package br.com.magna.garagem.cacapalavras.controladores;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 
 import br.com.magna.garagem.cacapalavras.componentes.Tabuleiro;
 import br.com.magna.garagem.cacapalavras.modelos.Usuario;
 
 public class ControladorDoJogo {
-	private static final Scanner leitorDeDados = new Scanner(System.in);
+	private static Scanner leitorDeDados = new Scanner(System.in);
+	private static String linhaDeFormatacao = "----------------------------------------------------------------";
+	
 	private Usuario usuario;
-	private Map<String, String> coordenadasDasLetras;
 	private Tabuleiro tabuleiro;
-
+	private Map<String, String> palavras;
+	
 	public ControladorDoJogo(Usuario usuario, Tabuleiro tabuleiro, Map<String, String> coordenadasDasLetras) {
-		this.coordenadasDasLetras = coordenadasDasLetras;
+		this.palavras = coordenadasDasLetras;
 		this.usuario = usuario;
 		this.tabuleiro = tabuleiro;
 	}
 
-	private List<String> validarEntrada() {
-		List<String> posicoesDigitadas = new ArrayList<>(2);
+	private String validarEntrada() {
+		String posicoesDigitadas = "";
 		Boolean continuarVerificandoPosicoes = true;
 
 		while (continuarVerificandoPosicoes) {
+			System.out.printf(" %s \n\n", linhaDeFormatacao);
 			System.out.print(" Digite aqui as posições da palavra encontrada: ");
 			String entradaDeDados = ControladorDoJogo.leitorDeDados.nextLine();
 
 			if (entradaDeDados.matches("[0-5],[0-5]-[0-5],[0-5]")) {
-				posicoesDigitadas = Arrays.asList(entradaDeDados.split("-"));
+				posicoesDigitadas = entradaDeDados;
 				continuarVerificandoPosicoes = false;
 			} else {
 				System.out.println("\n Por favor, digite posições válidas! Utilize a formatação\n"
@@ -43,53 +44,41 @@ public class ControladorDoJogo {
 		return posicoesDigitadas;
 	}
 
-	private void verificarJogada(List<String> posicoesDigitadas) {
+	private void verificarJogada(String posicoesDigitadas) {
 		this.usuario.realizarTentativa();
 
-		if (coordenadasDasLetras.containsKey(posicoesDigitadas.get(0))
-				&& coordenadasDasLetras.containsKey(posicoesDigitadas.get(1))
-				&& (coordenadasDasLetras.get(posicoesDigitadas.get(0)) == coordenadasDasLetras.get("4,3")
-						&& coordenadasDasLetras.get(posicoesDigitadas.get(1)) == coordenadasDasLetras.get("4,5"))) {
-
-			System.out.println(" Palavra \"RUA\" encontrada!\n");
-			coordenadasDasLetras.remove(posicoesDigitadas.get(0));
-			coordenadasDasLetras.remove(posicoesDigitadas.get(1));
-			usuario.pontuar();
-		} else if (coordenadasDasLetras.containsKey(posicoesDigitadas.get(0))
-				&& coordenadasDasLetras.containsKey(posicoesDigitadas.get(1))
-				&& (coordenadasDasLetras.get(posicoesDigitadas.get(0)) == coordenadasDasLetras.get("1,1")
-						&& coordenadasDasLetras.get(posicoesDigitadas.get(1)) == coordenadasDasLetras.get("4,1"))) {
-
-			System.out.println(" Palavra \"BOLA\" encontrada!\n");
-			coordenadasDasLetras.remove(posicoesDigitadas.get(0));
-			coordenadasDasLetras.remove(posicoesDigitadas.get(1));
-			this.usuario.pontuar();
-		} else {
-			System.out.println("\n Palavra não encontrada :(\n Por favor, tente novamente.\n");
+		for (Entry<String, String> palavra : this.palavras.entrySet()) {
+			if (posicoesDigitadas.equals(palavra.getKey())) {
+				System.out.printf(" Parabéns! Palavra %s encontrada.\n\n", palavra.getValue());
+				this.usuario.pontuar();
+				this.palavras.remove(palavra.getKey());
+				return;
+			}
 		}
+
+		System.out.println(" Nenhuma palavra encontrada :(\n");
 	}
 
-	public void iniciarFluxoDoJogo() {
+	public void iniciarJogo() {
 		boolean continuarJogo = true;
 
 		while (continuarJogo) {
-			System.out.println(" As palavras são: BOLA e RUA\n");
-			tabuleiro.mostrarTabuleiro();
+			tabuleiro.criarTabuleiro();
 			System.out.println();
 
 			verificarJogada(validarEntrada());
 
-			if (this.usuario.pegarPontuacao() == 2) {
+			if (this.usuario.pegarPontuacao() == 3) {
 				System.out.println(" Parabéns! Você achou todas as palavras!");
 				encerrarJogo();
 				continuarJogo = false;
 			} else {
 				System.out.print(" Continuar jogo? Digite \"sim\" ou \"não\": ");
-				String perguntarSeDesejaContinuar = ControladorDoJogo.leitorDeDados.nextLine();
+				String perguntarSeDesejaContinuar = ControladorDoJogo.leitorDeDados.nextLine().toLowerCase();
 				System.out.println();
 
-				if (perguntarSeDesejaContinuar.contains("sim") || perguntarSeDesejaContinuar.contains("Sim")) {
-					System.out.println(" ----------------------------------------------------------------");
+				if (perguntarSeDesejaContinuar.contains("sim")) {
+					System.out.printf(" %s \n\n", linhaDeFormatacao);
 					continue;
 				}
 
@@ -101,6 +90,7 @@ public class ControladorDoJogo {
 	}
 
 	public void encerrarJogo() {
+		System.out.printf(" %s \n\n", linhaDeFormatacao);
 		System.out.println(" Obrigado por jogar meu jogo, " + this.usuario.mostrarNome() + ". Tenha um ótimo dia!");
 		this.usuario.mostrarPontuacao();
 		this.usuario.mostrarQuantidadeDeTentativas();
