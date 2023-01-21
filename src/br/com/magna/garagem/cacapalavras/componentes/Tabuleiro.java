@@ -17,7 +17,7 @@ public class Tabuleiro {
 	public void criarTabuleiro() {
 		Random letrasAleatorias = new Random();
 		String linhaDoTabuleiro = "    -----------------------";
-		String caracterLetraEncontrada = "#";
+		String caracterLetraEncontrada = "*";
 
 		System.out.println(" As palavras são: BOLA, CARRO e RUA\n");
 
