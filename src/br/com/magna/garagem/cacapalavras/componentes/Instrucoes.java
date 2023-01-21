@@ -25,7 +25,7 @@ public class Instrucoes {
 		System.out.println(" No exemplo, \"1,1\" é a posição da primeira letra, já \"2,2\" é a\n"
 				+ " posição da última letra da palavra.\n");
 		System.out.printf("%40s", " Tenha um bom jogo!\n");
-		System.out.printf(" %s \n", linhaDeFormatacao);
+		System.out.printf(" %s \n\n", linhaDeFormatacao);
 	}
 
 }
