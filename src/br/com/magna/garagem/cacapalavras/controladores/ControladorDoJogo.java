@@ -13,10 +13,10 @@ public class ControladorDoJogo {
 	
 	private Usuario usuario;
 	private Tabuleiro tabuleiro;
-	private Map<String, String> palavras;
+	private Map<String, String> palavrasDoTabuleiro;
 	
 	public ControladorDoJogo(Usuario usuario, Tabuleiro tabuleiro, Map<String, String> coordenadasDasLetras) {
-		this.palavras = coordenadasDasLetras;
+		this.palavrasDoTabuleiro = coordenadasDasLetras;
 		this.usuario = usuario;
 		this.tabuleiro = tabuleiro;
 	}
@@ -47,11 +47,11 @@ public class ControladorDoJogo {
 	private void verificarJogada(String posicoesDigitadas) {
 		this.usuario.realizarTentativa();
 
-		for (Entry<String, String> palavra : this.palavras.entrySet()) {
+		for (Entry<String, String> palavra : this.palavrasDoTabuleiro.entrySet()) {
 			if (posicoesDigitadas.equals(palavra.getKey())) {
 				System.out.printf(" Parabéns! Palavra %s encontrada.\n\n", palavra.getValue());
 				this.usuario.pontuar();
-				this.palavras.remove(palavra.getKey());
+				this.palavrasDoTabuleiro.remove(palavra.getKey());
 				return;
 			}
 		}

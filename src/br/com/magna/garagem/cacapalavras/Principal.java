@@ -13,9 +13,9 @@ public class Principal {
 		usuario.definirNome();
 
 		Tabuleiro tabuleiro = new Tabuleiro();
-		Map<String, String> coordenadasDasLetras = tabuleiro.pegarPalavras();
+		Map<String, String> palavrasDoTabuleiro = tabuleiro.pegarPalavras();
 
-		ControladorDoJogo controladorDoJogo = new ControladorDoJogo(usuario, tabuleiro, coordenadasDasLetras);
+		ControladorDoJogo controladorDoJogo = new ControladorDoJogo(usuario, tabuleiro, palavrasDoTabuleiro);
 		Instrucoes instrucoes = new Instrucoes(usuario);
 
 		instrucoes.apresentarJogo();
