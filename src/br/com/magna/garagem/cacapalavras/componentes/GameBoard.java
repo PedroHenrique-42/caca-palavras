@@ -14,50 +14,39 @@ public class GameBoard {
 		gameWords.put("4,3-4,5", "RUA");
 	}
 
+	private void addWordInTheBoard(int initialLine, int initialColumn, String direction, String word) {
+		if (direction.equals("vertical")) {
+			for (int line = initialLine, index = 0; index < word.length(); line++, index++) {
+				this.gameBoard[line][initialColumn] = gameWords.containsValue(word) ? word.charAt(index) : '*';
+			}
+			return;
+		}
+
+		for (int column = initialColumn, index = 0; index < word.length(); column++, index++) {
+			this.gameBoard[initialLine][column] = gameWords.containsValue(word) ? word.charAt(index) : '*';
+		}
+	}
+
 	public void createBoard() {
 		Random randomNumberGenerator = new Random();
 		String boardLine = "    -----------------------";
-		Character findedWordCharacter = '*';
 
 		System.out.println(" As palavras são: BOLA, CARRO e RUA\n");
 		System.out.println("     0   1   2   3   4   5");
-
-		boolean gameWordsContainsBola = gameWords.containsKey("0,1-0,4");
-		boolean gameWordsContainsCarro = gameWords.containsKey("1,0-5,0");
-		boolean gameWordsContainsRua = gameWords.containsKey("4,3-4,5");
 
 		for (Integer line = 0; line < this.gameBoard.length; line++) {
 			System.out.println(boardLine);
 
 			for (Integer column = 0; column < this.gameBoard[line].length; column++) {
-				if (column == 0)
+				if (column == 0) {
 					System.out.print(" " + line + " | ");
-
-				if (line == 0 && column == 1) {
-					this.gameBoard[line][column] = gameWordsContainsBola ? 'B' : findedWordCharacter;
-					this.gameBoard[line][column + 1] = gameWordsContainsBola ? 'O' : findedWordCharacter;
-					this.gameBoard[line][column + 2] = gameWordsContainsBola ? 'L' : findedWordCharacter;
-					this.gameBoard[line][column + 3] = gameWordsContainsBola ? 'A' : findedWordCharacter;
 				}
+				
+				addWordInTheBoard(0, 1, "horizontal", "BOLA");
+				addWordInTheBoard(1, 0, "vertical", "CARRO");
+				addWordInTheBoard(4, 3, "horizontal", "RUA");
 
-				else if (line == 1 && column == 0) {
-					this.gameBoard[line][column] = gameWordsContainsCarro ? 'C' : findedWordCharacter;
-					this.gameBoard[line + 1][column] = gameWordsContainsCarro ? 'A' : findedWordCharacter;
-					this.gameBoard[line + 2][column] = gameWordsContainsCarro ? 'R' : findedWordCharacter;
-					this.gameBoard[line + 3][column] = gameWordsContainsCarro ? 'R' : findedWordCharacter;
-					this.gameBoard[line + 4][column] = gameWordsContainsCarro ? 'O' : findedWordCharacter;
-				}
-
-				else if (line == 4 && column == 3) {
-					this.gameBoard[line][column] = gameWordsContainsRua ? 'R' : findedWordCharacter;
-					this.gameBoard[line][column + 1] = gameWordsContainsRua ? 'U' : findedWordCharacter;
-					this.gameBoard[line][column + 2] = gameWordsContainsRua ? 'A' : findedWordCharacter;
-				}
-
-				else if (!(line == 0 && column == 1 || line == 0 && column == 2 || line == 0 && column == 3
-						|| line == 0 && column == 4 || line == 1 && column == 0 || line == 2 && column == 0
-						|| line == 3 && column == 0 || line == 4 && column == 0 || line == 5 && column == 0
-						|| line == 4 && column == 3 || line == 4 && column == 4 || line == 4 && column == 5)) {
+				if (this.gameBoard[line][column] == null) {
 					this.gameBoard[line][column] = (char) randomNumberGenerator.nextInt(65, 90);
 				}
 
