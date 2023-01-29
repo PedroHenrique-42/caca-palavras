@@ -14,16 +14,20 @@ public class GameBoard {
 		gameWords.put("4,3-4,5", "RUA");
 	}
 
-	private void addWordInTheBoard(int initialLine, int initialColumn, String direction, String word) {
+	private void addWordInTheBoard(Integer initialLine, Integer initialColumn, String direction, String word) {
+		Character wordFoundedCharacter = '*';
+
 		if (direction.equals("vertical")) {
 			for (int line = initialLine, index = 0; index < word.length(); line++, index++) {
-				this.gameBoard[line][initialColumn] = gameWords.containsValue(word) ? word.charAt(index) : '*';
+				this.gameBoard[line][initialColumn] = gameWords.containsValue(word) ? word.charAt(index)
+						: wordFoundedCharacter;
 			}
 			return;
 		}
 
 		for (int column = initialColumn, index = 0; index < word.length(); column++, index++) {
-			this.gameBoard[initialLine][column] = gameWords.containsValue(word) ? word.charAt(index) : '*';
+			this.gameBoard[initialLine][column] = gameWords.containsValue(word) ? word.charAt(index)
+					: wordFoundedCharacter;
 		}
 	}
 
@@ -41,7 +45,7 @@ public class GameBoard {
 				if (column == 0) {
 					System.out.print(" " + line + " | ");
 				}
-				
+
 				addWordInTheBoard(0, 1, "horizontal", "BOLA");
 				addWordInTheBoard(1, 0, "vertical", "CARRO");
 				addWordInTheBoard(4, 3, "horizontal", "RUA");

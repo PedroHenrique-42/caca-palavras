@@ -24,25 +24,22 @@ public class GameController {
 
 	private String validatePlayerInput() {
 		String typedPositions = "";
-		Boolean verifyPlayerInput = true;
 
-		while (verifyPlayerInput) {
+		while (true) {
 			System.out.printf(" %s \n\n", line);
 			System.out.print(" Digite aqui as posições da palavra encontrada: ");
 			String playerInput = this.inputReader.nextLine();
 
 			if (playerInput.matches("[0-5],[0-5]-[0-5],[0-5]")) {
 				typedPositions = playerInput;
-				verifyPlayerInput = false;
-			} else {
-				System.out.println("\n Por favor, digite posições válidas! Utilize a formatação\n"
-						+ " especificada no início do jogo: \"1,1-2,2\".");
-				System.out.println(" Lembre-se: o primeiro número de cada posição, é a linha,\n"
-						+ " já o segundo número de cada posição, é a coluna.\n");
+				return typedPositions;
 			}
-		}
 
-		return typedPositions;
+			System.out.println("\n Por favor, digite posições válidas! Utilize a formatação\n"
+					+ " especificada no início do jogo: \"1,1-2,2\".");
+			System.out.println(" Lembre-se: o primeiro número de cada posição, é a linha,\n"
+					+ " já o segundo número de cada posição, é a coluna.\n");
+		}
 	}
 
 	private void verifyAttempt(String typedPositions) {
@@ -61,9 +58,7 @@ public class GameController {
 	}
 
 	public void startGame() {
-		Boolean continueGame = true;
-
-		while (continueGame) {
+		while (true) {
 			gameBoard.createBoard();
 			System.out.println();
 
@@ -72,22 +67,20 @@ public class GameController {
 			if (this.player.getScoring() == 3) {
 				System.out.println(" Você encontrou todas as palavras!");
 				finishGame();
-				continueGame = false;
-			} else {
-				System.out.print(" Continuar jogo? Digite \"sim\" ou \"não\": ");
-				String verifyIfUserWantsToContinue = this.inputReader.nextLine().toLowerCase();
-				System.out.println();
-
-				if (verifyIfUserWantsToContinue.contains("sim")) {
-					System.out.printf(" %s \n\n", line);
-					continue;
-				}
-
-				finishGame();
-				continueGame = false;
+				return;
 			}
-		}
+			System.out.print(" Continuar jogo? Digite \"sim\" ou \"não\": ");
+			String verifyIfUserWantsToContinue = this.inputReader.nextLine().toLowerCase();
+			System.out.println();
 
+			if (verifyIfUserWantsToContinue.contains("sim")) {
+				System.out.printf(" %s \n\n", line);
+				continue;
+			}
+
+			finishGame();
+			return;
+		}
 	}
 
 	private void finishGame() {
