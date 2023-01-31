@@ -1,4 +1,4 @@
-package br.com.magna.garagem.cacapalavras.componentes;
+package br.com.magna.garagem.cacapalavras.components;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,11 +1,11 @@
-package br.com.magna.garagem.cacapalavras.controladores;
+package br.com.magna.garagem.cacapalavras.controllers;
 
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 
-import br.com.magna.garagem.cacapalavras.componentes.GameBoard;
-import br.com.magna.garagem.cacapalavras.modelos.Player;
+import br.com.magna.garagem.cacapalavras.components.GameBoard;
+import br.com.magna.garagem.cacapalavras.models.Player;
 
 public class GameController {
 	private String line = "----------------------------------------------------------------";

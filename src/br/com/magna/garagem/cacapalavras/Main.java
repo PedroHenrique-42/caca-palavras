@@ -3,10 +3,10 @@ package br.com.magna.garagem.cacapalavras;
 import java.util.Map;
 import java.util.Scanner;
 
-import br.com.magna.garagem.cacapalavras.componentes.GameBoard;
-import br.com.magna.garagem.cacapalavras.componentes.Instructions;
-import br.com.magna.garagem.cacapalavras.controladores.GameController;
-import br.com.magna.garagem.cacapalavras.modelos.Player;
+import br.com.magna.garagem.cacapalavras.components.GameBoard;
+import br.com.magna.garagem.cacapalavras.components.Instructions;
+import br.com.magna.garagem.cacapalavras.controllers.GameController;
+import br.com.magna.garagem.cacapalavras.models.Player;
 
 public class Main {
 	public static void main(String[] args) {

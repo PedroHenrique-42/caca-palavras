@@ -1,6 +1,6 @@
-package br.com.magna.garagem.cacapalavras.componentes;
+package br.com.magna.garagem.cacapalavras.components;
 
-import br.com.magna.garagem.cacapalavras.modelos.Player;
+import br.com.magna.garagem.cacapalavras.models.Player;
 
 public class Instructions {
 	private String line = "----------------------------------------------------------------";

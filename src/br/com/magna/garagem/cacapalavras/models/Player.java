@@ -1,4 +1,4 @@
-package br.com.magna.garagem.cacapalavras.modelos;
+package br.com.magna.garagem.cacapalavras.models;
 
 import java.util.Scanner;
 
